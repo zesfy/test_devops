@@ -2,16 +2,25 @@ version: 0.1
 component: build
 timeoutInSeconds: 10000
 shell: bash
-failImmediatelyOnError: false
+failImmediatelyOnError: true
 env:
   exportedVariables:
     - now
+    - plan_job_id
 
 steps:
   - type: Command
     name: "terraform plan"
     command: |
       now=`date +'%Y%m%d%H%M%S'`
-      oci resource-manager job create-plan-job \
+      plan_job_id=$(oci resource-manager job create-plan-job \
       --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-      --display-name terraform_plan_${now}
+      --display-name terraform_plan_${now} | jq '.data.id' -r)
+  - type: Command
+    name: "terraform apply"
+    command: |
+      now=`date +'%Y%m%d%H%M%S'`
+      oci resource-manager job create-apply-job \
+      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
+      --execution-plan-strategy ${plan_job_id}
+      --display-name terraform_apply_${now}
