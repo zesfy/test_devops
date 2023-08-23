@@ -7,4 +7,12 @@ failImmediatelyOnError: true
 steps:
   - type: Command
     name: test
-    command: "echo 'test'"
+    command: |
+      encrypt_key=`oci secrets secret-bundle get \
+      --secret-id=ocid1.vaultsecret.oc1.iad.amaaaaaacsgkr3yautdclmae55ha77aco7zsksybrgcvjr7cvk7rjzy3dz7a \
+      --query 'data."secret-bundle-content".content' \
+      --raw-output \
+      | base64 -d`
+  - type: Command
+    name: echo test
+    command: "echo $encrypt_key"
