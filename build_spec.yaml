@@ -4,7 +4,7 @@ timeoutInSeconds: 10000
 shell: bash
 failImmediatelyOnError: true
 env:
-  variables:
+  exportedVariables:
     - encrypt_key
 
 steps:
