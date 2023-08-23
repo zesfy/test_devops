@@ -5,13 +5,13 @@ shell: bash
 failImmediatelyOnError: true
 env:
   variables:
-    encrypt_key: a
+    encrypt_key: "a"
 
 steps:
   - type: Command
     name: test
     command: |
-      ${encrypt_key}=`oci secrets secret-bundle get \
+      encrypt_key=`oci secrets secret-bundle get \
       --secret-id=ocid1.vaultsecret.oc1.iad.amaaaaaacsgkr3ya6vbuaj34566fggblxagztegvpzviqey56x32lhaxg3eq \
       --query 'data."secret-bundle-content".content' \
       --raw-output \
