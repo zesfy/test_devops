@@ -5,12 +5,13 @@ shell: bash
 failImmediatelyOnError: false
 env:
   exportedVariables:
-    - encrypt_key
+    - now
 
 steps:
   - type: Command
     name: "terraform plan"
     command: |
+      now=`date +'%Y%m%d%H%M%S'`
       oci resource-manager job create-plan-job \
       --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-      --display-name terraform_plan_`date +'%Y%m%d%H%M%S'`
+      --display-name terraform_plan_${now}
