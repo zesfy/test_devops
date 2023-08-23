@@ -18,8 +18,7 @@ steps:
       --display-name terraform_plan_${now} \
       --wait-for-state "SUCCEEDED" \
       --wait-for-state "FAILED" \
-      --query "data" \
-      | jq -r '.["id"]')
+      --query "data"  | jq -r '.["id"]')
   - type: Command
     name: "terraform apply"
     command: |
