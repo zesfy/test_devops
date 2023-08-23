@@ -2,18 +2,15 @@ version: 0.1
 component: build
 timeoutInSeconds: 10000
 shell: bash
-failImmediatelyOnError: true
+failImmediatelyOnError: false
 env:
   exportedVariables:
     - encrypt_key
 
 steps:
   - type: Command
-    name: "test"
+    name: "terraform plan"
     command: |
-      encrypt_key=`oci secrets secret-bundle get \
-      --secret-id=ocid1.vaultsecret.oc1.iad.amaaaaaacsgkr3ya6vbuaj34566fggblxagztegvpzviqey56x32lhaxg3eq \
-      --query 'data."secret-bundle-content".content' \
-      --raw-output \
-      | base64 -d`
-      echo $encrypt_key
+      oci resource-manager job create-plan-job \
+      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
+      --display-name terraform_plan_`date +'%Y%m%d%H%M%S'`
