@@ -30,5 +30,5 @@ steps:
       now=`date +'%Y%m%d%H%M%S'`
       oci resource-manager job create-apply-job \
       --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-      --execution-plan-strategy ${plan_job_id}
+      --execution-plan-strategy ${plan_job_id} \
       --display-name terraform_apply_${now}
