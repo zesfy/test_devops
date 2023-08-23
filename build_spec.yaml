@@ -10,6 +10,11 @@ env:
 
 steps:
   - type: Command
+    name: "Install jq"
+    runAs: root
+    command: |
+      yum install -y jq
+  - type: Command
     name: "terraform plan"
     command: |
       now=`date +'%Y%m%d%H%M%S'`
