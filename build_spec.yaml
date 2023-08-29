@@ -26,6 +26,7 @@ steps:
       --query "data"  | jq -r '.["id"]')
   - type: Command
     name: "terraform apply"
+    failImmediatelyOnError: false
     command: |
       now=`date +'%Y%m%d%H%M%S'`
       oci resource-manager job create-apply-job \
