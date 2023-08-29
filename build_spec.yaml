@@ -9,11 +9,6 @@ env:
 
 steps:
   - type: Command
-    name: "Install jq"
-    runAs: root
-    command: |
-      yum install -y jq
-  - type: Command
     name: "terraform plan"
     command: |
       now=`date +'%Y%m%d%H%M%S'`
@@ -22,11 +17,3 @@ steps:
       --display-name terraform_plan_${now} \
       --wait-for-state "SUCCEEDED" \
       --wait-for-state "FAILED"
-  - type: Command
-    name: "terraform apply"
-    command: |
-      now=`date +'%Y%m%d%H%M%S'`
-      oci resource-manager job create-apply-job \
-      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-      --execution-plan-strategy AUTO_APPROVED \
-      --display-name terraform_apply_${now}
