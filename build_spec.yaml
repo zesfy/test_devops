@@ -21,8 +21,7 @@ steps:
       --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
       --display-name terraform_plan_${now} \
       --wait-for-state "SUCCEEDED" \
-      --wait-for-state "FAILED" \
-      --query "data"
+      --wait-for-state "FAILED"
   - type: Command
     name: "terraform apply"
     command: |
