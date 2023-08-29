@@ -17,12 +17,6 @@ steps:
     name: "terraform plan"
     command: |
       now=`date +'%Y%m%d%H%M%S'`
-#      plan_job_id=$(oci resource-manager job create-plan-job \
-#      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-#      --display-name terraform_plan_${now} \
-#      --wait-for-state "SUCCEEDED" \
-#      --wait-for-state "FAILED" \
-#      --query "data"  | jq -r '.["id"]')
       oci resource-manager job create-plan-job \
       --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
       --display-name terraform_plan_${now} \
