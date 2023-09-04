@@ -1,6 +1,6 @@
 variable compartment_id { }
 variable vcn_cidr_block { }
-variable vcn_display_name { default = "test_vcn" }
+variable vcn_display_name { default = "devops_test_vcn" }
 
 resource "oci_core_vcn" "test_vcn" {
     #Required

@@ -1,0 +1,57 @@
+{
+  "data": {
+    "apply-job-plan-resolution": {
+      "is-auto-approved": true,
+      "is-use-latest-job-id": null,
+      "plan-job-id": null
+    },
+    "cancellation-details": {
+      "is-forced": false
+    },
+    "compartment-id": "ocid1.compartment.oc1..aaaaaaaagln7lfylrmfknyia3t4hsez7fcjg646bql723vfuliuwusbtcdeq",
+    "config-source": {
+      "branch-name": "main",
+      "commit-id": "6579cb5adc6f2ff300333f02b7ead1eb053e5825",
+      "config-source-record-type": "DEVOPS_CONFIG_SOURCE",
+      "project-id": "ocid1.devopsproject.oc1.iad.amaaaaaacsgkr3ya7qg3lewzrjnbubnermg472vqxt6xjv4cc6x6g6f62faa",
+      "repository-id": "ocid1.devopsrepository.oc1.iad.amaaaaaacsgkr3yavc2blnx76alcjjjygtm6biotezc2tlcxm7qzbmvzlzva"
+    },
+    "defined-tags": {
+      "Oracle-Tags": {
+        "CreatedBy": "oracleidentitycloudservice/motobe.yasutaka.8rf@jp.nssol.nipponsteel.com",
+        "CreatedOn": "2023-09-04T02:29:07.087Z"
+      }
+    },
+    "display-name": "terraform_apply_20230904112903",
+    "failure-details": null,
+    "freeform-tags": {},
+    "id": "ocid1.ormjob.oc1.iad.amaaaaaacsgkr3yamahpxsw4ocrn7ro7jfnsk45tymog7idsupokreb6whnq",
+    "is-provider-upgrade-required": false,
+    "is-third-party-provider-experience-enabled": true,
+    "job-operation-details": {
+      "execution-plan-job-id": null,
+      "execution-plan-strategy": "AUTO_APPROVED",
+      "operation": "APPLY",
+      "terraform-advanced-options": {
+        "detailed-log-level": null,
+        "is-refresh-required": true,
+        "parallelism": 10
+      }
+    },
+    "lifecycle-state": "SUCCEEDED",
+    "operation": "APPLY",
+    "resolved-plan-job-id": null,
+    "stack-id": "ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia",
+    "time-created": "2023-09-04T02:29:07.303000+00:00",
+    "time-finished": "2023-09-04T02:29:49.309000+00:00",
+    "variables": {
+      "compartment_id": "ocid1.compartment.oc1..aaaaaaaagln7lfylrmfknyia3t4hsez7fcjg646bql723vfuliuwusbtcdeq",
+      "compartment_ocid": "ocid1.compartment.oc1..aaaaaaaagln7lfylrmfknyia3t4hsez7fcjg646bql723vfuliuwusbtcdeq",
+      "region": "us-ashburn-1",
+      "tenancy_ocid": "ocid1.tenancy.oc1..aaaaaaaacjhgdudzww6wkryr7fruxujvtivrt6yv7aoqnr3nppveh2ilknlq",
+      "vcn_cidr_block": "10.0.0.0/16"
+    },
+    "working-directory": null
+  },
+  "etag": "97367efde4a763292287953643a5c0a41541ad288d35c5295c820395c288c344--gzip"
+}
