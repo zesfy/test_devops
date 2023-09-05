@@ -20,10 +20,15 @@ steps:
 #       cat test.json
 
   - type: Command
+    name: "ls"
+    command: |
+      echo `ls ${OCI_WORKSPACE_DIR}`
+
+  - type: Command
     name: "Upload deployment yaml"
     command: |
       oci artifacts generic artifact upload-by-path \
       --repository-id ocid1.devopsdeployartifact.oc1.iad.amaaaaaacsgkr3yapcebmiokeyqpknm3vc6z7kek2vfty2emownclqvmwsaq \
       --artifact-path deployment_sopec.yaml \
       --artifact-version 3.5 \
-      --content-body test.json
+      --content-body ${OCI_WORKSPACE_DIR}/test.json
