@@ -6,10 +6,11 @@ failImmediatelyOnError: true
 env:
   exportedVariables:
     - now
+    - NEW_VERSION
 
 steps:
   - type: Command
-    name: "Upload deployment yaml"
+    name: "Get Latest Artifact Version"
     command: |
       LATEST=$(oci artifacts generic artifact list \
       --compartment-id ocid1.compartment.oc1..aaaaaaaagln7lfylrmfknyia3t4hsez7fcjg646bql723vfuliuwusbtcdeq \
@@ -20,14 +21,16 @@ steps:
       --limit 1)
 
       LATEST_VERSION=`echo $LATEST | python3 -m json.tool | awk -F\" '/"version"/{print $4}'`
-
       NEW_VERSION=`bc <<< "scale=1; $LATEST_VERSION + 0.1"`
-
+  - type: Command
+    name: "Upload deployment yaml"
+    command: |
       oci artifacts generic artifact upload-by-path \
       --repository-id ocid1.artifactrepository.oc1.iad.0.amaaaaaacsgkr3ya65yspnxx2czkfz2hsavi7mexb4xt5h6zd7nssgwzstrq \
       --artifact-path deployment_spec.yaml \
       --artifact-version $NEW_VERSION \
-      --content-body deployment_spec.yaml
+      --content-body deployment_spec.yaml \
+      --wait-for-state 
 
   - type: Command
     name: "Update DevOps Artifact Version"
