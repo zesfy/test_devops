@@ -8,17 +8,23 @@ env:
     - now
 
 steps:
-
-  - type: Command
-    name: "ls"
-    command: |
-      echo `ls ${OCI_WORKSPACE_DIR}`
-
   - type: Command
     name: "Upload deployment yaml"
     command: |
+      LATEST=$(oci artifacts generic artifact list \
+      --compartment-id ocid1.compartment.oc1..aaaaaaaagln7lfylrmfknyia3t4hsez7fcjg646bql723vfuliuwusbtcdeq \
+      --repository-id ocid1.artifactrepository.oc1.iad.0.amaaaaaacsgkr3ya65yspnxx2czkfz2hsavi7mexb4xt5h6zd7nssgwzstrq \
+      --lifecycle-state AVAILABLE \
+      --sort-by timecreated \
+      --sort-order desc \
+      --limit 1)
+
+      LATEST_VERSION=`echo $LATEST | python3 -m json.tool | awk -F\" '/"version"/{print $4}'`
+
+      NEW_VERSION=`bc <<< "scale=1; $LATEST_VERSION + 0.1"`
+
       oci artifacts generic artifact upload-by-path \
-      --repository-id ocid1.devopsdeployartifact.oc1.iad.amaaaaaacsgkr3yapcebmiokeyqpknm3vc6z7kek2vfty2emownclqvmwsaq \
+      --repository-id ocid1.artifactrepository.oc1.iad.0.amaaaaaacsgkr3ya65yspnxx2czkfz2hsavi7mexb4xt5h6zd7nssgwzstrq \
       --artifact-path deployment_spec.yaml \
-      --artifact-version 3.4 \
-      --content-body test.json
+      --artifact-version $NEW_VERSION \
+      --content-body deployment_spec.yaml

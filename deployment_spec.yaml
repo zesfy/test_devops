@@ -1,0 +1,22 @@
+version: 0.1
+component: command
+timeoutInSeconds: 10000
+shell: bash
+failImmediatelyOnError: true
+
+steps:
+  - type: Command
+    name: "terraform apply"
+    shell: bash
+    command: |
+      now=`date +'%Y%m%d%H%M%S'`
+      RET=$(oci resource-manager job create-apply-job \
+      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
+      --execution-plan-strategy AUTO_APPROVED \
+      --display-name terraform_apply_${now} \
+      --wait-for-state SUCCEEDED \
+      --wait-for-state FAILED)
+      RESULT_STATE=$(echo $RET | python3 -m json.tool | awk -F\" '/"lifecycle-state"/{print $4}')
+      if [ $RESULT_STATE == "FAILED" ]; then
+        exit 1
+      fi
