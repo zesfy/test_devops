@@ -17,3 +17,8 @@ steps:
       --display-name terraform_plan_${now} \
       --wait-for-state "SUCCEEDED" \
       --wait-for-state "FAILED"
+
+outputArtifacts:
+  - name: test-artifacts-20230905
+    type: BINARY
+    location: test.json
