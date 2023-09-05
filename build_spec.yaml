@@ -11,12 +11,13 @@ steps:
   - type: Command
     name: "terraform plan"
     command: |
-      now=`date +'%Y%m%d%H%M%S'`
-      oci resource-manager job create-plan-job \
-      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-      --display-name terraform_plan_${now} \
-      --wait-for-state "SUCCEEDED" \
-      --wait-for-state "FAILED"
+#      now=`date +'%Y%m%d%H%M%S'`
+#      oci resource-manager job create-plan-job \
+#      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
+#      --display-name terraform_plan_${now} \
+#      --wait-for-state "SUCCEEDED" \
+#      --wait-for-state "FAILED"
+       cat test.json
 
 outputArtifacts:
   - name: test-artifacts-20230905
