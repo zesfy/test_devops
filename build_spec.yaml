@@ -8,16 +8,6 @@ env:
     - now
 
 steps:
-#  - type: Command
-#    name: "terraform plan"
-#    command: |
-#      now=`date +'%Y%m%d%H%M%S'`
-#      oci resource-manager job create-plan-job \
-#      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
-#      --display-name terraform_plan_${now} \
-#      --wait-for-state "SUCCEEDED" \
-#      --wait-for-state "FAILED"
-#       cat test.json
 
   - type: Command
     name: "ls"
@@ -29,6 +19,6 @@ steps:
     command: |
       oci artifacts generic artifact upload-by-path \
       --repository-id ocid1.devopsdeployartifact.oc1.iad.amaaaaaacsgkr3yapcebmiokeyqpknm3vc6z7kek2vfty2emownclqvmwsaq \
-      --artifact-path deployment_sopec.yaml \
-      --artifact-version 3.5 \
-      --content-body ${OCI_WORKSPACE_DIR}/test.json
+      --artifact-path deployment_spec.yaml \
+      --artifact-version 3.4 \
+      --content-body test.json
