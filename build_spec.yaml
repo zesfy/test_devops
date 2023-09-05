@@ -29,8 +29,7 @@ steps:
       --repository-id ocid1.artifactrepository.oc1.iad.0.amaaaaaacsgkr3ya65yspnxx2czkfz2hsavi7mexb4xt5h6zd7nssgwzstrq \
       --artifact-path deployment_spec.yaml \
       --artifact-version $NEW_VERSION \
-      --content-body deployment_spec.yaml \
-      --wait-for-state 
+      --content-body deployment_spec.yaml
 
   - type: Command
     name: "Update DevOps Artifact Version"
