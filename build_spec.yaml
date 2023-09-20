@@ -10,6 +10,16 @@ env:
 
 steps:
   - type: Command
+    name: "terraform plan"
+    command: |
+      now=`date +'%Y%m%d%H%M%S'`
+      oci resource-manager job create-plan-job \
+      --stack-id ocid1.ormstack.oc1.iad.amaaaaaacsgkr3yamog27tijl4pliwsye52ab2fff63kva47sgu6idcod3ia \
+      --display-name terraform_plan_${now} \
+      --wait-for-state "SUCCEEDED" \
+      --wait-for-state "FAILED"
+
+  - type: Command
     name: "Get Latest Artifact Version"
     command: |
       LATEST=$(oci artifacts generic artifact list \
@@ -22,6 +32,7 @@ steps:
 
       LATEST_VERSION=`echo $LATEST | python3 -m json.tool | awk -F\" '/"version"/{print $4}'`
       NEW_VERSION=`bc <<< "scale=1; $LATEST_VERSION + 0.1"`
+
   - type: Command
     name: "Upload deployment yaml"
     command: |
