@@ -10,3 +10,4 @@ test 20230920 13:28 No.1動作確認。orm に対する権限を use から mana
 test 20230920 13:38 No.1動作確認。devops-family に対する権限を use から manage に変更。
 test 20230920 13:49 No.1動作確認。devops-family に対する権限を use に戻す。 generic-artifacts に対する権限を use から manage に変更。
 test 20230920 14:00 No.1動作確認。devops-family に対する権限を use から manage に変更。
+test 20230920 14:17 No.1動作確認。既設 vcn を削除してゼロから実施。
