@@ -38,15 +38,15 @@ steps:
     command: |
       oci artifacts generic artifact upload-by-path \
       --repository-id ocid1.artifactrepository.oc1.iad.0.amaaaaaacsgkr3ya65yspnxx2czkfz2hsavi7mexb4xt5h6zd7nssgwzstrq \
-      --artifact-path deployment_spec.yaml \
+      --artifact-path deploy_001.yaml \
       --artifact-version $NEW_VERSION \
-      --content-body deployment_spec.yaml
+      --content-body dep_001.yaml
 
   - type: Command
     name: "Update DevOps Artifact Version"
     command: |
       oci devops deploy-artifact update-generic-artifact \
       --artifact-id ocid1.devopsdeployartifact.oc1.iad.amaaaaaacsgkr3yapcebmiokeyqpknm3vc6z7kek2vfty2emownclqvmwsaq \
-      --artifact-path deployment_spec.yaml \
+      --artifact-path deploy_001.yaml \
       --repository-id ocid1.artifactrepository.oc1.iad.0.amaaaaaacsgkr3ya65yspnxx2czkfz2hsavi7mexb4xt5h6zd7nssgwzstrq \
       --artifact-version $NEW_VERSION
