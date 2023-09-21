@@ -14,3 +14,5 @@ test 20230920 14:17 No.1動作確認。既設 vcn を削除してゼロから実
 test 20230920 14:17 No.1動作確認。virtual-network-family に対する manage 権限を付与。
 test 20230920 16:08 build_spec.yaml の名称を test.yaml に変更して動作確認。
 test 20230920 16:19 deployment_spec.yaml の名称を dep_001.yaml に変更して動作確認。
+test 20230921 15:25 サービス・コネクタ・ハブの動作確認用に実行。
+
